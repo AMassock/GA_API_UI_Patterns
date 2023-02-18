@@ -1,5 +1,6 @@
 import './App.css';
 import Modal from './Modal';
+import Button from './components/Button';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
       .catch((err) => console.log('oop something went wrong', err))
     }, [])
 
-    console.log(pokeList);
+    // console.log(pokeList);
 
   return (
     <div className="App">
       <p>test</p>
-      <button onClick={() => setOpenModal(true)}>Open Modal</button>
+      <Button poke={pokeList} onClick={() => setOpenModal(true)} />
       <Modal open={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
