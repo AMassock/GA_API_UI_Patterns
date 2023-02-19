@@ -1,6 +1,9 @@
 import React from "react";
 
-export default function Modal({open, onClose}) {
+export default function Modal({open, onClose, pokeURL}) {
+    // console.log(pokeURL);
+    // const pokeImg = // todo: get image url
+    // const desc = // todo: create description from api 
     if(!open) return null
 
     return(

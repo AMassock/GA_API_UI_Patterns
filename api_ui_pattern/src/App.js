@@ -1,10 +1,11 @@
 import './App.css';
 import Modal from './Modal';
-import Button from './components/Button';
+import Home from './components/Home';
 import { useState, useEffect } from 'react';
+import { Layout } from './pages';
 
 function App() {
-  const URL = 'https://pokeapi.co/api/v2/pokemon?limit=250';
+  const URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
 
   const [openModal, setOpenModal] = useState(false);
   const [pokeList, setPokeList] = useState([]);
@@ -16,13 +17,10 @@ function App() {
       .catch((err) => console.log('oop something went wrong', err))
     }, [])
 
-    // console.log(pokeList);
-
   return (
     <div className="App">
-      <p>test</p>
-      <Button poke={pokeList} onClick={() => setOpenModal(true)} />
-      <Modal open={openModal} onClose={() => setOpenModal(false)} />
+      <Layout />
+      <Home poke={pokeList} onClick={() => setOpenModal(true)} />
     </div>
   );
 }
