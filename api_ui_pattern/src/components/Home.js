@@ -1,41 +1,41 @@
-import Modal from "../Modal";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Description from "./Description";
+// import './Home.css';
 
-export default function Home (props){
-    // console.log('Button:', props);
-    const [openModal, setOpenModal] = useState(false);
-    const [pokeUrl, setPokeUrl] = useState([]);
-    
+export default function Home () {
+  const [currentPoke, setCurrentPoke] = useState(0);
+  const [pokeData, setPokeData] = useState([]);
 
-    let allPoke = props.poke.map((poke, i) => {
-        const name = poke.name
-        const pokeURL = `https://pokeapi.co/api/v2/pokemon/${name}/`
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .then(response => response.json())
+      .then(data => {
+        setPokeData(data.results);
+      });
+  }, []);
 
-        const fetchData = async () => {
-            try {
-              const response = await fetch(pokeURL);
-              const json = await response.json();
-              const data = setPokeUrl(json); 
-              console.log(pokeUrl);
-            } catch (error) {
-              console.log("error", error);
-            }
-          };
+  const nextPoke = () => {
+    setCurrentPoke((currentPoke + 1) % pokeData.length);
+  };
 
-        return(
-            <div>
-                <button key={name} onClick={() => fetchData()}>
-                    {pokeURL}
-                </button>
-                <Modal open={openModal} onClose={() => setOpenModal(false)} pokeURL={pokeURL}/>
-            </div>
-        )
-    });
+  const prevPoke = () => {
+    setCurrentPoke((currentPoke + pokeData.length - 1) % pokeData.length);
+  };
 
-    return(
-        <div>
-            { allPoke }
-        </div>
-    )
+  if (!pokeData.length) {
+    return <div>Loading...</div>;
+  };
 
-}
+  const name = pokeData[currentPoke].name.toUpperCase();  
+
+  return (
+    <div className="container">
+        <img className="img" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${currentPoke + 1}.png`} alt={pokeData[currentPoke].name} />
+        <h3 className="name">{name}</h3>
+        <Description index={currentPoke} />
+        <button className="prev-arrow" onClick={prevPoke}>&#9664;</button>
+        <button className="next-arrow" onClick={nextPoke}>&#9654;</button>
+    </div>
+
+  );
+};
