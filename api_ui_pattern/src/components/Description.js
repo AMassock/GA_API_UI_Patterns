@@ -19,17 +19,24 @@ export default function Description (props) {
         })()
     }, [url])
 
-
+    if (pokeFull === 'https://pokeapi.co/api/v2/pokemon/1/') {
+        return <div>Loading...</div>;
+      };
     // console.log('url:', url);
 
-    // console.log('pokeFull:', pokeFull);
+    console.log('pokeFull:', pokeFull);
     const type = pokeFull.types[0].type.name;
     const name = pokeFull.name;
+    const move1 = pokeFull.moves[0].move.name;
+    const move2 = pokeFull.moves[1].move.name;
+    const move3 = pokeFull.moves[2].move.name;
+    const moves = `${move1}, ${move2}, and ${move3}`
+
 
     // console.log(name);
 
       return(
         // <p>test</p>
-        <p>{name} is a {type} type Pokémon.</p>
+        <p>{name} is a {type} type Pokémon. {name}'s moves are {moves}</p>
       )
 }

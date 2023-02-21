@@ -1,4 +1,5 @@
+import './Header.css';
 
 export default function Header() {
-    return (<h1>The Original 151!</h1>)
+    return (<h1 className="header">The Original 151!</h1>)
 }

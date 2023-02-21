@@ -13,4 +13,7 @@ img {
 button {
     width: 350px;
     margin-left: 20px;
+    background-color: rgb(244, 196, 30);
+    border: 5px solid rgb(55, 93, 158);
+    border-radius: 5px;
 }
