@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Description from "./Description";
-// import './Home.css';
+import './Home.css';
 
 export default function Home () {
   const [currentPoke, setCurrentPoke] = useState(0);
