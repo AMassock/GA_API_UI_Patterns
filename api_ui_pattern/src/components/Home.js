@@ -30,8 +30,8 @@ export default function Home () {
 
   return (
     <div className="container">
+      <h3 className="name">{name}</h3>
         <img className="img" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${currentPoke + 1}.png`} alt={pokeData[currentPoke].name} />
-        <h3 className="name">{name}</h3>
         <Description index={currentPoke} />
         <button className="prev-arrow" onClick={prevPoke}>&#9664;</button>
         <button className="next-arrow" onClick={nextPoke}>&#9654;</button>
